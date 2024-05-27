@@ -36,9 +36,17 @@
 
 using ConsoleApp1;
 
-Zvire zvire1 = new Zvire("Selma", "Kocka");
+Zvire zvire1 = new Zvire(Druh.KOCKA, "Morek");
 zvire1.RekniCoJsi();
-Zvire zvire2 = new Zvire("Psovity", "Pes");
+Zvire zvire2 = new Zvire(Druh.PES, "Hafan");
 zvire2.RekniCoJsi();
 Zvire zvire3 = new Zvire();
 zvire3.RekniCoJsi();
+Zvire zvire4 = new Zvire()
+{
+    Jmeno = "Alik",
+    Druh = Druh.PES,
+};
+zvire4.RekniCoJsi();
+Console.WriteLine($"Zvire 1: \nJmeno: {zvire1.Jmeno}\nDruh: {zvire1.Druh}");
+zvire2.ToString();

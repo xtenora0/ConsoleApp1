@@ -9,23 +9,33 @@ namespace ConsoleApp1;
 
 public class Zvire
 {
-    public string druh;
-    public string jmeno;
+    public Enum Druh { get; set; }
+    public string Jmeno { get; set; }
 
     public Zvire()
     {
-        this.druh = "Defaultni druh zvirete";
-        this.jmeno = "Jsem jen proste jen defaultni zvire";
+        
+        this.Jmeno = "Jsem jen proste jen defaultni zvire";
     }
 
-    public Zvire(string _druh, string _jmeno) 
+    public Zvire(Druh druh, string jmeno) 
     {
-        this.druh = _druh;
-        this.jmeno = _jmeno; 
+        this.Druh = druh;
+        this.Jmeno = jmeno; 
     }
-
     public void RekniCoJsi() 
     {
-        Console.WriteLine("Jsem " + druh + " a " + jmeno);
+        Console.WriteLine("Jsem " + Druh + " a " + Jmeno);
     }
+    public override string ToString()
+    {
+        return $"Zvire z ToString, jmeno: {Jmeno}, druh: {Druh}";
+    }
+}
+
+public enum Druh 
+{
+    DEFAULTDRUH,
+    KOCKA,
+    PES
 }
