@@ -40,3 +40,5 @@ Zvire zvire1 = new Zvire("Selma", "Kocka");
 zvire1.RekniCoJsi();
 Zvire zvire2 = new Zvire("Psovity", "Pes");
 zvire2.RekniCoJsi();
+Zvire zvire3 = new Zvire();
+zvire3.RekniCoJsi();
