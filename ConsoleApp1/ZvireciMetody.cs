@@ -25,6 +25,10 @@ namespace ConsoleApp1
             zvire4.RekniCoJsi();
             Console.WriteLine($"Zvire 1: \nJmeno: {zvire1.Jmeno}\nDruh: {zvire1.Druh}");
             zvire2.ToString();
+
+
+           
+
         }
     }
 }
