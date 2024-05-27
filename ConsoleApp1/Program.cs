@@ -47,34 +47,66 @@ Dictionary<string, string> jmenaPozdravy = new Dictionary<string, string>()
 Console.WriteLine("Jak se jmenujes?");
 string jmeno = Console.ReadLine();
 
-switch (jmeno)
+if (!jmenaPozdravy.ContainsKey(jmeno))
 {
-    case "Lukas":
-        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
-        break;
-    case "Karel":
-        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
-        break;
-    case "Tomas":
-        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
-        break;
-    case "Martin":
-        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
-        break;
-    case "Radim":
-        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
-        break;
-    case "Jakub":
-        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
-        break;
-    case "Sofian":
-        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
-        break;
-    default:
-        Console.WriteLine("Neznam te");
-        break;
-
+    Console.WriteLine("Neznam te");
+    return;
 }
+//else 
+//{
+//    Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+//}
+
+var osloveni = jmenaPozdravy[jmeno];
+Console.WriteLine($"Ahoj {osloveni}");
+
+//switch (jmeno)
+//{
+//    case "Lukas":
+//        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+//        break;
+//    case "Karel":
+//        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+//        break;
+//    case "Tomas":
+//        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+//        break;
+//    case "Martin":
+//        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+//        break;
+//    case "Radim":
+//        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+//        break;
+//    case "Jakub":
+//        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+//        break;
+//    case "Sofian":
+//        Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+//        break;
+//    default:
+//        Console.WriteLine("Neznam te");
+//        break;
+
+//}
+
+//test s cyklem
+//bool jeTam = false;
+//foreach (var item in jmenaPozdravy[jmeno]) 
+//{
+//    if (item.Equals(jmenaPozdravy[jmeno]))
+//    {
+//        jeTam = true;
+//        break;
+//    }
+//}
+//if (jeTam)
+//{
+//    Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+//}
+//else 
+//{
+//    Console.WriteLine("Neznam te");
+//}
 
 
 //for(int i = 0; i < jmena.Length; i++) 
