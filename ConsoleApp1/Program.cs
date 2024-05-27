@@ -1,10 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Linq;
 //string[] jmena = ["Lukáš", "Karel", "Tomáš", "Martin", "Radim", "Jakub", "Sofián", "Pavel", "Petr"];
 
 //List<string> listJmena = new List<string>() {
 //    "Lukáš", "Karel", "Tomáš", "Martin", "Radim", "Jakub", "Sofián", "Pavel", "Petr"
 //};
+
+//foreach(string jmena in listJmena)
+//{
+//    Console.Write(jmena + ", ");
+
+//}
+//var spojeno = string.Join(", ", listJmena);
+//Console.WriteLine(spojeno);
 
 //List<string> listJmena2 = ["Lukáš", "Karel", "Tomáš", "Martin", "Radim", 
 //    "Jakub", "Sofián", "Pavel", "Petr"];
@@ -33,32 +42,32 @@
 
 //var streda = dnyVTydnu[3];
 
-Dictionary<string, string> jmenaPozdravy = new Dictionary<string, string>()
-{
-    {"Lukas", "Lukasi" },
-    {"Karel", "Karle" },
-    {"Tomas", "Tomasi" },
-    {"Martin", "Martine" },
-    {"Radim", "Radime" },
-    {"Jakub", "Jakube" },
-    {"Sofian", "Sofiane" },
-};
-
-Console.WriteLine("Jak se jmenujes?");
-string jmeno = Console.ReadLine();
-
-if (!jmenaPozdravy.ContainsKey(jmeno))
-{
-    Console.WriteLine("Neznam te");
-    return;
-}
-//else 
+//Dictionary<string, string> jmenaPozdravy = new Dictionary<string, string>()
 //{
-//    Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
-//}
+//    {"Lukas", "Lukasi" },
+//    {"Karel", "Karle" },
+//    {"Tomas", "Tomasi" },
+//    {"Martin", "Martine" },
+//    {"Radim", "Radime" },
+//    {"Jakub", "Jakube" },
+//    {"Sofian", "Sofiane" },
+//};
 
-var osloveni = jmenaPozdravy[jmeno];
-Console.WriteLine($"Ahoj {osloveni}");
+//Console.WriteLine("Jak se jmenujes?");
+//string jmeno = Console.ReadLine();
+
+//if (!jmenaPozdravy.ContainsKey(jmeno))
+//{
+//    Console.WriteLine("Neznam te");
+//    return;
+//}
+////else 
+////{
+////    Console.WriteLine("Ahoj " + jmenaPozdravy[jmeno]);
+////}
+
+//var osloveni = jmenaPozdravy[jmeno];
+//Console.WriteLine($"Ahoj {osloveni}");
 
 //switch (jmeno)
 //{
@@ -164,3 +173,53 @@ Console.WriteLine($"Ahoj {osloveni}");
 //zvire4.RekniCoJsi();
 //Console.WriteLine($"Zvire 1: \nJmeno: {zvire1.Jmeno}\nDruh: {zvire1.Druh}");
 //zvire2.ToString();
+
+
+//-----------------------------------------------------------------------------------
+//Linq
+
+int[] numbers = [12, 44, 43, -69, 66, 32, 3, 0, -8, 6, -8, 80,53,-63,36,5,0,75,-75];
+
+//WHERE filtr
+var kladna777 = numbers.Where(numbers => numbers > 0).ToList();
+
+//ORDER BY
+var ordered = numbers.OrderBy(numbers => numbers).ToList();
+
+//TAKE, SKIP
+var first5 = numbers.Take(5).ToList();
+var skip = numbers.Skip(5).ToList();
+
+//MAX, MIN, SUM, AVG  - agregační
+var sum = numbers.Sum(numbers => numbers);
+var max = numbers.Max(numbers => numbers);
+
+//Console.WriteLine($"Sum: {sum}");
+//Console.WriteLine($"Max: {max}");
+
+//SELECT - transformace
+var positiveNum = numbers.Select(number => Math.Abs(number)).Where(number => number > 50);
+//Console.WriteLine(positiveNum);
+
+//ukoly
+var pocetKladna = numbers.Where(numbers => numbers > 0).Count();
+var pocetZaporna = numbers.Where(numbers => numbers < 0).Count();
+var sumKlad = numbers.Where(numbers => numbers > 0).Sum();
+var maxAbs = numbers.Select(number => Math.Abs(number)).Max();
+var kladSud = numbers.Where(numbers => numbers > 0 && numbers % 2 == 0).ToList();
+var orderedByDesc = numbers.OrderDescending();
+var skipThreeSum = numbers.Skip(3).Sum();
+
+Console.WriteLine($"Kladna: {pocetKladna}");
+Console.WriteLine($"Zaporna: {pocetZaporna}");
+Console.WriteLine($"Suma kladnych: {sumKlad}");
+Console.WriteLine($"Max absolutni : {maxAbs}");
+Console.WriteLine($"Kladna suda cisla: {string.Join(", ",kladSud)}");
+Console.WriteLine($"Serazeno od nejmensi po nejvetsi: {string.Join(", ", orderedByDesc)}");
+Console.WriteLine($"Preskoc 3 a secti: {skipThreeSum}");
+
+
+//foreach (var n in kladna)
+//{
+//    Console.Write(n);
+//}
