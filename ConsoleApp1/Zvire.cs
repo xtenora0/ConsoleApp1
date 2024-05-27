@@ -31,6 +31,11 @@ public class Zvire
     {
         return $"Zvire z ToString, jmeno: {Jmeno}, druh: {Druh}";
     }
+
+    public void PrejmenujZvire(string jmeno) 
+    {
+        this.Jmeno = jmeno;
+    }
 }
 
 public enum Druh 
