@@ -5,25 +5,65 @@ using System.Linq;
 using PersonModel;
 using System.Data;
 using PersonData;
+using Person = PersonModel.Person;
+using System.Net.Http.Json;
 
 
-var data = DatasetAccess.LoadData(@"C:\MES_DDC_SW\repos\ConsoleApp1\ConsoleApp1\data2024.json");
+//var data = DatasetAccess.LoadData(@"C:\MES_DDC_SW\repos\ConsoleApp1\ConsoleApp1\data2024.json");
 
-var context = new PeopleContext();
+//var context = new PeopleContext();
 
-var cnt = context.People.Count();
+//var cnt = context.People.Count();
 
-Console.WriteLine(cnt);
+//Console.WriteLine(cnt);
 
-Console.WriteLine("Naplnit db? (y/n)");
-var answer = Console.ReadLine();
-if (answer.ToLower() == "y")
-{
-    context.People.AddRange(data);
-    context.SaveChanges();
-    Console.WriteLine("Done");
-}
-else 
-{
-    Console.WriteLine("Skipping");
-}
+//Console.WriteLine("Naplnit db? (y/n)");
+//var answer = Console.ReadLine();
+//if (answer.ToLower() == "y")
+//{
+//    context.People.AddRange(data);
+//    context.SaveChanges();
+//    Console.WriteLine("Done");
+//}
+//else 
+//{
+//    Console.WriteLine("Skipping");
+//}
+
+var url = "https://localhost:7234";
+
+HttpClient client = new HttpClient();
+int id = 229;
+
+////GET API
+Person? p = await client.GetFromJsonAsync<Person>($"{url}/person/{id}");
+
+//Console.WriteLine("Zadej hledany mail");
+
+//string mailVstup = Console.ReadLine();
+//var email = await client.GetFromJsonAsync<List<Person>>($"{url}/person/searchemail/{mailVstup}");
+//foreach (var item in email) 
+//{
+//    Console.WriteLine(item);
+//}
+
+//POST API
+//Person p = new() 
+//{
+//    FirstName = "Pavel1",
+//    LastName = "Studený",
+//    DateOfBirth = new DateTime(1988,10,20),
+//    Email = "pavel.studeny@daikindevice.cz"
+//};
+
+//var result = await client.PostAsJsonAsync<Person>($"{url}/person/create", p);
+//var personCreated = await result.Content.ReadFromJsonAsync<Person>();
+Console.WriteLine(p);
+p.Email = "novyMail@seznam.cz";
+
+var result = await client.PutAsJsonAsync<Person>($"{url}/person/edit", p);
+
+p = await client.GetFromJsonAsync<Person>($"{url}/person/{id}");
+Console.WriteLine(p);
+
+Console.ReadLine();
