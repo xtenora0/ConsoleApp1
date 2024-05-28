@@ -38,6 +38,26 @@ app.MapPut("/person/edit/", (Person person, PeopleContext db) =>
     db.SaveChanges();
     return personDB;
 });
+//LegalEntity Ukol
+app.MapGet("/legalEntity/{id}", (int id, PeopleContext db) => db.LegalEntities.Where(x => x.Id == id).Single());
+
+app.MapPost("/legalEntity/create", (LegalEntity po, PeopleContext db) =>
+{
+    db.LegalEntities.Add(po);
+    db.SaveChanges();
+    return po;
+});
+
+app.MapPut("/legalEntity/edit/", (LegalEntity po, PeopleContext db) =>
+{
+    var poDB = db.LegalEntities.Where(s => s.Id == po.Id).Single();
+
+    db.Entry<LegalEntity>(poDB).CurrentValues.SetValues(po);
+    db.SaveChanges();
+    return poDB;
+});
+
+app.MapGet("/legalEntity/all", (PeopleContext db) => db.LegalEntities);
 
 app.Run();
 

@@ -36,7 +36,7 @@ HttpClient client = new HttpClient();
 int id = 229;
 
 ////GET API
-Person? p = await client.GetFromJsonAsync<Person>($"{url}/person/{id}");
+//Person? p = await client.GetFromJsonAsync<Person>($"{url}/person/{id}");
 
 //Console.WriteLine("Zadej hledany mail");
 
@@ -58,12 +58,49 @@ Person? p = await client.GetFromJsonAsync<Person>($"{url}/person/{id}");
 
 //var result = await client.PostAsJsonAsync<Person>($"{url}/person/create", p);
 //var personCreated = await result.Content.ReadFromJsonAsync<Person>();
-Console.WriteLine(p);
-p.Email = "novyMail@seznam.cz";
+//Console.WriteLine(p);
+//p.Email = "novyMail@seznam.cz";
 
-var result = await client.PutAsJsonAsync<Person>($"{url}/person/edit", p);
+//var result = await client.PutAsJsonAsync<Person>($"{url}/person/edit", p);
 
-p = await client.GetFromJsonAsync<Person>($"{url}/person/{id}");
-Console.WriteLine(p);
+//p = await client.GetFromJsonAsync<Person>($"{url}/person/{id}");
+//Console.WriteLine(p);
+
+//LegalEntity
+List<LegalEntity> listLE = new() 
+{
+    new LegalEntity()
+    {
+        Id = 0,
+        Name = "Saul Goodman",
+        RegistratonNumber = 2466704,
+    },
+    new LegalEntity()
+    {
+        Id = 0,
+        Name = "Heisenberg",
+        RegistratonNumber = 737000,
+    },
+    new LegalEntity()
+    {
+        Id = 0,
+        Name = "JEJ",
+        RegistratonNumber = 464464,
+    }
+};
+
+
+var result1 = await client.PostAsJsonAsync<List<LegalEntity>>($"{url}/legalEntity/create", listLE);
+//var poCreated1 = await result1.Content.ReadFromJsonAsync<List<LegalEntity>>();
+
+
+var po1 = await client.GetFromJsonAsync<List<LegalEntity>>($"{url}/legalEntity/all");
+foreach (var item in po1) 
+{
+    Console.WriteLine(item);
+
+}
+
+
 
 Console.ReadLine();

@@ -10,6 +10,7 @@ public class PeopleContext : DbContext
     public DbSet<Address> Addresses { get; set; }
 
     public DbSet<Contract> Contracts { get; set; }
+    public DbSet<LegalEntity> LegalEntities { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite(@"Data Source=C:\MES_DDC_SW\repos\ConsoleApp1\people.db");

@@ -32,6 +32,13 @@ public class Contract
     public string HexColor { get; set; }
 }
 
+public class LegalEntity 
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int RegistratonNumber { get; set; }
+}
+
 public enum CarBrand
 {
     Skoda,
