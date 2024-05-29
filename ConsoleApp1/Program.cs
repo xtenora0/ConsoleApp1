@@ -7,6 +7,8 @@ using System.Data;
 using PersonData;
 using Person = PersonModel.Person;
 using System.Net.Http.Json;
+using ConsoleApp1;
+using ConsoleApp1.Logger;
 
 
 //var data = DatasetAccess.LoadData(@"C:\MES_DDC_SW\repos\ConsoleApp1\ConsoleApp1\data2024.json");
@@ -30,10 +32,10 @@ using System.Net.Http.Json;
 //    Console.WriteLine("Skipping");
 //}
 
-var url = "https://localhost:7234";
+//var url = "https://localhost:7234";
 
-HttpClient client = new HttpClient();
-int id = 229;
+//HttpClient client = new HttpClient();
+//int id = 229;
 
 ////GET API
 //Person? p = await client.GetFromJsonAsync<Person>($"{url}/person/{id}");
@@ -67,40 +69,45 @@ int id = 229;
 //Console.WriteLine(p);
 
 //LegalEntity
-List<LegalEntity> listLE = new() 
-{
-    new LegalEntity()
-    {
-        Id = 0,
-        Name = "Saul Goodman",
-        RegistratonNumber = 2466704,
-    },
-    new LegalEntity()
-    {
-        Id = 0,
-        Name = "Heisenberg",
-        RegistratonNumber = 737000,
-    },
-    new LegalEntity()
-    {
-        Id = 0,
-        Name = "JEJ",
-        RegistratonNumber = 464464,
-    }
-};
+//List<LegalEntity> listLE = new() 
+//{
+//    new LegalEntity()
+//    {
+//        Id = 0,
+//        Name = "Saul Goodman",
+//        RegistratonNumber = 2466704,
+//    },
+//    new LegalEntity()
+//    {
+//        Id = 0,
+//        Name = "Heisenberg",
+//        RegistratonNumber = 737000,
+//    },
+//    new LegalEntity()
+//    {
+//        Id = 0,
+//        Name = "JEJ",
+//        RegistratonNumber = 464464,
+//    }
+//};
 
 
-var result1 = await client.PostAsJsonAsync<List<LegalEntity>>($"{url}/legalEntity/create", listLE);
-//var poCreated1 = await result1.Content.ReadFromJsonAsync<List<LegalEntity>>();
+//var result1 = await client.PostAsJsonAsync<List<LegalEntity>>($"{url}/legalEntity/create", listLE);
+////var poCreated1 = await result1.Content.ReadFromJsonAsync<List<LegalEntity>>();
 
 
-var po1 = await client.GetFromJsonAsync<List<LegalEntity>>($"{url}/legalEntity/all");
-foreach (var item in po1) 
-{
-    Console.WriteLine(item);
+//var po1 = await client.GetFromJsonAsync<List<LegalEntity>>($"{url}/legalEntity/all");
+//foreach (var item in po1) 
+//{
+//    Console.WriteLine(item);
 
-}
+//}
 
+//----------------------------------------- LOgger + Asynchronní metody, Task, Api
+ISimpleLogger logger = new SimpleFileLogger("log.txt");
 
+var data = await PersonAPICall.GetPeople(logger);
+
+Console.WriteLine($"počet osob: {data.Count()}");
 
 Console.ReadLine();

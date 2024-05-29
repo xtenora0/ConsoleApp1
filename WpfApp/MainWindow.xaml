@@ -1,0 +1,31 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Call Sync" x:Name="btnCallSync" FontSize="24" Width="150" Height="35" Click="btnCallSync_Click"/>
+                <Button Content="Call Async" x:Name="btnCallAsync" FontSize="24" Width="150" Height="35" Click="btnCallAsync_Click" Margin="5"/>
+                
+            </StackPanel>
+            <TextBlock x:Name="txbInfo" HorizontalAlignment="Stretch" Height="120" FontSize="24"
+                       TextWrapping="Wrap"
+                       Text="TextBlock" >
+                        
+            </TextBlock>
+
+            <TextBlock x:Name="txbArea" HorizontalAlignment="Stretch" Height="120" FontSize="24" Background="Beige"
+                       TextWrapping="Wrap"
+                       Text="TextBlock" >
+
+            </TextBlock>
+
+        </StackPanel>
+
+    </Grid>
+</Window>
