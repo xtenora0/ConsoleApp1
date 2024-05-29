@@ -32,6 +32,8 @@ app.MapGet("/person/searchemail/{email}", (string email, PeopleContext db) =>
     db.People.Where(osoba => osoba.Email.ToLower().Contains(email.ToLower()))
 );
 
+app.MapGet("/people/count", (PeopleContext db) => db.People.Count());
+
 app.MapPost("/person/create", (Person person, PeopleContext db) =>
 {
     db.People.Add(person);

@@ -31,5 +31,20 @@ namespace WpfApp
 
             return data;
         }
+
+        public async Task<List<Person>> GetRangeAsync(int skip, int take) 
+        {
+            var client = new HttpClient();
+            var getUrl = $"{url}/people/skip/{skip}/take/{take}";
+            var data = await client.GetFromJsonAsync<List<Person>>(getUrl);
+
+            return data;
+        }
+
+        public async Task<int> GetPeopleCountAsync() 
+        {
+            var client = new HttpClient();
+            return await client.GetFromJsonAsync<int>($"{url}/people/count");
+        }
     }
 }
